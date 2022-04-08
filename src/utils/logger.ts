@@ -1,7 +1,8 @@
 import winston, { Logger, LoggerOptions } from 'winston';
+import config from '@/config';
 
 const loggerConfig: LoggerOptions = {
-  level: 'debug',
+  level: config.logger.level,
   levels: winston.config.npm.levels,
   format: winston.format.combine(
     winston.format.timestamp({
