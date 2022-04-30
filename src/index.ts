@@ -1,6 +1,6 @@
-import { Client } from 'discord.js';
+import { Client, Message } from 'discord.js';
 import config from '@/config';
-import { discordMessageHandler } from '@/events';
+import { discordMessageHandler } from '@/services/DiscordMessageHandler';
 import { logger } from '@/utils/logger';
 import logs from '@/lang/logs';
 
@@ -11,7 +11,7 @@ const start = async () => {
 
   client.once('ready', async () => {
     logger.debug(logs.operational.onReady);
-    client.on('messageCreate',(event) => discordMessageHandler.process(event));
+    client.on('messageCreate',(event: Message) => discordMessageHandler.process(event));
   });
 
   client.on('messageCreate', async (event) => {
